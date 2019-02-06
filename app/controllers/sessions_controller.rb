@@ -11,6 +11,7 @@ class SessionsController < ApplicationController
     else
       flash.now[:danger] = 'ログインに失敗しました。'
       render 'new'
+    end
   end
 
   def destroy
@@ -27,9 +28,9 @@ class SessionsController < ApplicationController
      # ログイン成功
      session[:user_id] = @user.id
      return true
-   else
+    else
      # ログイン失敗
      return false
-   end
- end
+    end
+  end
 end

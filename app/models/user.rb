@@ -7,14 +7,10 @@ class User < ApplicationRecord
     has_secure_password
     
     has_many :microposts
-    # 自分がフォローしているUserへの参照
     has_many :relationships
-    # followingモデルというものはないため、relationships中間テーブルを経由して、follow_idからUserを取得
- 　 has_many :followings, through: :relationships, source: :follow
- 　 # 自分をフォローしているUserへの逆参照
- 　 has_many :reverses_of_relationship, class_name: 'Relationship', foreign_key: 'follow_id'
- 　 # followerモデルというものはないため、逆relationships中間テーブルを経由して、user_idからUserを取得
- 　 has_many :followers, through: :reverses_of_relationship, source: :user
+    has_many :followings, through: :relationships, source: :follow
+    has_many :reverses_of_relationship, class_name: 'Relationship', foreign_key: 'follow_id'
+    has_many :followers, through: :reverses_of_relationship, source: :user
 
  def follow(other_user)
     unless self == other_user # フォローしようとしているother_userが自分自身でないかの検証

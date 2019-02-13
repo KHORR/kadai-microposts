@@ -12,15 +12,18 @@ Rails.application.routes.draw do
     member do
       get :followings
       get :followers
+      get :likes
+      # 中間テーブルから先にある、フォロー中の投稿を表示させるコード?
+      get :like_followings
     end
   end
-
   resources :microposts, only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
+  
   resources :likes, only: [:create, :destroy] do
-     member do
-        get :users
-        get :microposts
-     end
+# 中間テーブルから先にある、お気に入りしているユーザ一覧を表示させるコード？
+    # member do
+        # get :like_followers
+    # end
    end
 end

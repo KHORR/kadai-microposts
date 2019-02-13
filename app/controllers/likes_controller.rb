@@ -8,8 +8,8 @@ class LikesController < ApplicationController
    micropost = Micropost.find(params[:micropost_id])
    current_user.like(micropost)
    flash[:success] = 'いいねをしました。'
-   redirect_to user
-   
+   # redirect_back + 戻れなかった時の保険でroot_urlに戻る
+   redirect_back(fallback_location: root_url)
   end
    
   def destroy
@@ -19,8 +19,10 @@ class LikesController < ApplicationController
      micropost = Micropost.find(params[:micropost_id])
      current_user.unlike(micropost)
      flash[:success] = 'いいねを取り消しました。'
-   　redirect_to user
+     redirect_back(fallback_location: root_url)
   end
+ 
+ 
 end
 
 

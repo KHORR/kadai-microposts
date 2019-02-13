@@ -42,7 +42,16 @@ class UsersController < ApplicationController
   def like_followings
     @user = User.find(params[:id])
     @like_followings = @user.like_followings.page(params[:page])
-    counts(@micropost)
+    counts(@user)
+  end
+  
+  def likes
+    # 送られてきたuser_idに紐付いたMicropost一覧を出すaction
+    @user = User.find(params[:id])
+    # @user.like_followingsで返ってくるのは、micropost一覧
+    # [Micropostのインスタンス1, Micropostのインスタンス2, Micropostのインスタンス3,,,]
+    @like_followings = @user.like_followings.page(params[:page])
+    counts(@user)
   end
   
   

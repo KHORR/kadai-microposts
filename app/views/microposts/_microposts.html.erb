@@ -12,12 +12,7 @@
           <p><%= micropost.content %></p>
         </div>
         
-        
-        
-         <%= render 'likes/follow_like_button', user: @user %>
-        
-        
-        
+         <%= render 'likes/follow_like_button', micropost: micropost %>
         
         <div>
           <% if current_user == micropost.user %>

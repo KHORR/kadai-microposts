@@ -7,4 +7,6 @@ class Micropost < ApplicationRecord
   has_many :reverses_of_like, class_name: 'Like', foreign_key: 'user_id'
 
   has_many :like_followers, through: :reverses_of_like, source: :user
+  
+ 
 end

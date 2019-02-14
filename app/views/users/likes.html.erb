@@ -1,1 +1,7 @@
 <%= render 'microposts/microposts', microposts: @like_followings %>
+
+<% if @like_followings.any? %>
+  <%= render 'microposts/microposts', microposts: @like_followings %>
+<% else %>
+  <p>お気に入りしているMicropostはありません。</p>
+<% end %>
